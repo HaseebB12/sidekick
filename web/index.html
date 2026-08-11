@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Sidekick — browser preview</title>
+    <link rel="stylesheet" href="/src/renderer/shared/theme.css" />
+    <link rel="stylesheet" href="/web/preview.css" />
+  </head>
+  <body>
+    <!-- The "desktop" Sidekick floats over. In the real app this is whatever you
+         happen to be working in; here it stands in so the overlay has context. -->
+    <div class="desktop" id="desktop">
+      <div class="wallpaper"></div>
+
+      <div class="mock-window">
+        <div class="mock-bar">
+          <i></i><i></i><i></i>
+          <span>server.js — api-service</span>
+        </div>
+        <pre class="mock-code"><code><span class="ln">14</span>  app.post('/api/orders', async (req, res) =&gt; {
+<span class="ln">15</span>    const { items, userId } = req.body;
+<span class="ln">16</span>    const total = items.reduce((sum, i) =&gt; sum + i.price * i.qty, 0);
+<span class="ln">17</span>
+<span class="ln">18</span>    const order = await db.orders.insert({ userId, items, total });
+<span class="ln">19</span>    await mailer.send(user.email, 'Order confirmed', order.id);
+<span class="ln">20</span>
+<span class="ln">21</span>    res.json(order);
+<span class="ln">22</span>  });</code></pre>
+        <div class="mock-terminal">
+          <div class="err">TypeError: Cannot read properties of undefined (reading 'email')</div>
+          <div class="dim">    at /srv/api/server.js:19:26</div>
+          <div class="dim">    at processTicksAndRejections (node:internal/process/task_queues:95:5)</div>
+        </div>
+      </div>
+
+      <aside class="explainer">
+        <h1>Sidekick <span>browser preview</span></h1>
+        <p>
+          This is the real UI — the same renderer files the Windows app loads. Press the hotkey
+          (or the button), then click the character to capture and chat.
+        </p>
+        <div class="keys">
+          <button id="btnSummon" class="primary">Summon</button>
+          <button id="btnSettings" class="ghost">Settings</button>
+          <kbd>Ctrl</kbd><kbd>Shift</kbd><kbd>Space</kbd>
+        </div>
+        <ul class="caveats">
+          <li><b>Capture</b> uses the browser's screen-share prompt instead of a silent grab.</li>
+          <li><b>The hotkey</b> only fires while this tab has focus.</li>
+          <li><b>Characters</b> live in this browser's storage, not a folder on disk.</li>
+          <li>Everything else — motion, recolour, chat, persistence — is the shipping code.</li>
+        </ul>
+        <p class="note" id="keyNote"></p>
+      </aside>
+    </div>
+
+    <!-- The three Sidekick surfaces, each the same page Electron loads. -->
+    <iframe id="companion" class="surface companion" src="/src/renderer/companion/index.html" title="Sidekick companion"></iframe>
+    <div id="chatHolder" class="chat-holder" hidden>
+      <iframe id="chat" class="surface" src="/src/renderer/chat/index.html" title="Sidekick chat"></iframe>
+    </div>
+    <div id="settingsHolder" class="modal" hidden>
+      <div class="modal-card">
+        <iframe id="settings" class="surface" src="/src/renderer/settings/index.html" title="Sidekick settings"></iframe>
+      </div>
+    </div>
+
+    <script src="/src/renderer/shared/bridge-web.js"></script>
+    <script src="/web/preview.js"></script>
+  </body>
+</html>

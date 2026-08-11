@@ -1,0 +1,38 @@
+{
+  "name": "sidekick",
+  "productName": "Sidekick",
+  "version": "0.1.0",
+  "description": "A summonable desktop AI companion for Windows. Hotkey, character, screenshot, chat.",
+  "author": "Abdul Hye",
+  "license": "MIT",
+  "main": "src/main/main.js",
+  "scripts": {
+    "start": "electron .",
+    "dev": "electron . --dev",
+    "web": "node web/server.js",
+    "dist": "electron-builder --win nsis"
+  },
+  "devDependencies": {
+    "electron": "^43.3.0",
+    "electron-builder": "^26.15.3"
+  },
+  "build": {
+    "appId": "com.abdulhye.sidekick",
+    "productName": "Sidekick",
+    "files": [
+      "src/**/*",
+      "assets/**/*",
+      "package.json"
+    ],
+    "win": {
+      "target": [
+        "nsis"
+      ]
+    },
+    "nsis": {
+      "oneClick": false,
+      "allowToChangeInstallationDirectory": true,
+      "createDesktopShortcut": true
+    }
+  }
+}

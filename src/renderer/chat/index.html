@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Sidekick — Chat</title>
+    <link rel="stylesheet" href="../shared/theme.css" />
+    <link rel="stylesheet" href="chat.css" />
+  </head>
+  <body>
+    <div class="panel">
+      <header class="bar">
+        <div class="title">
+          <span class="dot" id="statusDot"></span>
+          <strong>Sidekick</strong>
+          <em id="modelTag"></em>
+        </div>
+        <div class="bar-actions">
+          <button id="btnRecapture" title="Take a fresh screenshot">
+            <svg viewBox="0 0 24 24"><path d="M20 12a8 8 0 1 1-2.6-5.9" /><path d="M20 4v4.5h-4.5" /></svg>
+            Re-capture
+          </button>
+          <button id="btnClose" class="icon" title="Close (Esc)">
+            <svg viewBox="0 0 24 24"><path d="m7 7 10 10M17 7 7 17" /></svg>
+          </button>
+        </div>
+      </header>
+
+      <div class="shot" id="shotStrip" hidden>
+        <img id="shotThumb" alt="Screenshot Sidekick is looking at" />
+        <div class="shot-meta">
+          <span id="shotSize"></span>
+          <span id="shotTime"></span>
+        </div>
+      </div>
+
+      <div class="thread" id="thread" role="log" aria-live="polite"></div>
+
+      <form class="composer" id="composer">
+        <textarea
+          id="input"
+          rows="1"
+          placeholder="Ask about what's on your screen…"
+          autocomplete="off"
+        ></textarea>
+        <button type="submit" id="btnSend" title="Send (Enter)">
+          <svg viewBox="0 0 24 24"><path d="m4 12 16-8-6 8 6 8z" /></svg>
+        </button>
+      </form>
+    </div>
+
+    <script src="../shared/bridge-web.js"></script>
+    <script src="chat.js"></script>
+  </body>
+</html>

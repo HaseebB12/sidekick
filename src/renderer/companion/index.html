@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Sidekick</title>
+    <link rel="stylesheet" href="../shared/theme.css" />
+    <link rel="stylesheet" href="companion.css" />
+  </head>
+  <body class="stage">
+    <!-- Web-line: drawn from the top edge down to the figure during a swing (F2). -->
+    <svg class="webline" aria-hidden="true">
+      <line x1="0" y1="0" x2="0" y2="0" />
+    </svg>
+
+    <div class="character" id="character" data-state="hidden">
+      <div class="figure" id="figure" role="button" tabindex="0" aria-label="Sidekick — click to look at my screen">
+        <div class="figure-art" id="figureArt"></div>
+        <div class="thinking" id="thinking" aria-hidden="true"><i></i><i></i><i></i></div>
+      </div>
+
+      <div class="toolbar" id="toolbar">
+        <button data-act="capture" title="Look at my screen">
+          <svg viewBox="0 0 24 24"><path d="M4 7h3l1.5-2h7L17 7h3v12H4z" /><circle cx="12" cy="13" r="3.4" /></svg>
+        </button>
+        <button data-act="characters" title="Change character">
+          <svg viewBox="0 0 24 24"><circle cx="12" cy="8.5" r="3.6" /><path d="M5 20c0-3.6 3.1-6 7-6s7 2.4 7 6" /></svg>
+        </button>
+        <button data-act="colors" title="Recolour">
+          <svg viewBox="0 0 24 24"><path d="M12 3.5a8.5 8.5 0 1 0 0 17c1.4 0 2.2-.9 2.2-2 0-1.5-1.3-1.7-1.3-2.8 0-.9.7-1.5 1.7-1.5H16a4.5 4.5 0 0 0 4.5-4.5C20.5 6.2 16.7 3.5 12 3.5Z" /><circle cx="8" cy="10" r="1.2" /><circle cx="12" cy="7.6" r="1.2" /><circle cx="16" cy="10" r="1.2" /></svg>
+        </button>
+        <button data-act="settings" title="Settings">
+          <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3.2" /><path d="M12 3.5v2.2M12 18.3v2.2M20.5 12h-2.2M5.7 12H3.5M18 6l-1.6 1.6M7.6 16.4 6 18M18 18l-1.6-1.6M7.6 7.6 6 6" /></svg>
+        </button>
+        <button data-act="dismiss" title="Dismiss (Esc)">
+          <svg viewBox="0 0 24 24"><path d="m7 7 10 10M17 7 7 17" /></svg>
+        </button>
+      </div>
+
+      <!-- Character picker (F5) -->
+      <div class="pop" id="popCharacters" hidden>
+        <header>
+          <span>Character</span>
+          <button class="pop-add" data-act="open-folder">Add your own…</button>
+        </header>
+        <div class="char-grid" id="charGrid"></div>
+        <p class="pop-note" id="charNote"></p>
+      </div>
+
+      <!-- Recolour (F6) -->
+      <div class="pop" id="popColors" hidden>
+        <header><span>Recolour</span><button class="pop-add" data-act="reset-color">Reset</button></header>
+        <label class="row">
+          <span>Hue</span>
+          <input type="range" id="hue" min="0" max="360" step="1" />
+          <output id="hueOut">0°</output>
+        </label>
+        <label class="row">
+          <span>Saturation</span>
+          <input type="range" id="sat" min="0" max="220" step="1" />
+          <output id="satOut">100%</output>
+        </label>
+        <label class="row">
+          <span>Brightness</span>
+          <input type="range" id="bri" min="50" max="160" step="1" />
+          <output id="briOut">100%</output>
+        </label>
+        <div class="swatches" id="swatches"></div>
+        <div class="parts" id="parts" hidden>
+          <p class="pop-note">Per-part colours — built-in characters only.</p>
+          <div class="part-list" id="partList"></div>
+        </div>
+        <p class="pop-note" id="partsNote" hidden>
+          This is a flat image, so only hue &amp; tint apply — per-part colours need a built-in vector character.
+        </p>
+      </div>
+    </div>
+
+    <!-- Toast for capture / errors -->
+    <div class="toast" id="toast" hidden></div>
+
+    <script src="../shared/bridge-web.js"></script>
+    <script src="companion.js"></script>
+  </body>
+</html>

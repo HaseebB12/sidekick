@@ -1,0 +1,42 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 240" width="200" height="240">
+  <!-- Zephyr — built-in vector character: a hooded figure mid-swing, one arm up on the line.
+       data-part groups drive the per-part recolour in F6. -->
+  <defs>
+    <filter id="zeph-soft" x="-40%" y="-40%" width="180%" height="180%">
+      <feGaussianBlur stdDeviation="6" />
+    </filter>
+  </defs>
+
+  <ellipse cx="100" cy="226" rx="40" ry="8" fill="#000" opacity="0.2" filter="url(#zeph-soft)" />
+
+  <!-- trailing cloak, drawn behind the body -->
+  <g data-part="cloak" fill="#7b3ff2">
+    <path d="M96 74 C 150 92, 178 140, 172 206 C 150 190, 132 176, 118 150 C 110 132, 100 104, 96 74 Z" opacity="0.92" />
+    <path d="M96 74 C 62 96, 44 142, 52 200 C 72 184, 88 166, 98 140 Z" opacity="0.75" />
+  </g>
+
+  <g data-part="suit" fill="#e8407a">
+    <!-- raised arm holding the line -->
+    <path d="M92 82 C 86 60, 80 40, 78 20 L 96 16 C 100 38, 104 60, 108 80 Z" />
+    <!-- torso -->
+    <path d="M100 66 C 124 66, 138 86, 136 116 C 134 146, 122 162, 100 164 C 78 162, 66 146, 64 116 C 62 86, 76 66, 100 66 Z" />
+    <!-- trailing arm -->
+    <path d="M68 108 C 52 122, 42 138, 38 156 L 54 166 C 62 148, 72 134, 82 124 Z" />
+    <!-- legs, tucked mid-swing -->
+    <path d="M84 158 C 78 182, 68 198, 52 212 L 70 224 C 92 208, 104 188, 108 164 Z" />
+    <path d="M112 158 C 122 178, 134 190, 150 198 L 156 180 C 142 172, 130 160, 124 148 Z" />
+  </g>
+
+  <g data-part="hood" fill="#c92f63">
+    <path d="M100 12 C 122 12, 136 28, 136 50 C 136 72, 122 86, 100 86 C 78 86, 64 72, 64 50 C 64 28, 78 12, 100 12 Z" />
+  </g>
+
+  <g data-part="lens" fill="#ffffff">
+    <path d="M78 44 C 88 38, 94 42, 94 52 C 94 62, 84 66, 76 60 C 71 56, 72 47, 78 44 Z" />
+    <path d="M122 44 C 112 38, 106 42, 106 52 C 106 62, 116 66, 124 60 C 129 56, 128 47, 122 44 Z" />
+  </g>
+
+  <g data-part="trim" fill="#1b1030" opacity="0.55">
+    <rect x="70" y="118" width="60" height="9" rx="4.5" />
+  </g>
+</svg>

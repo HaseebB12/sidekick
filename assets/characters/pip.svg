@@ -1,0 +1,42 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 240" width="200" height="240">
+  <!-- Pip — built-in vector character. Every recolourable group carries data-part,
+       which is what the per-part colour picker (F6) walks. -->
+  <defs>
+    <filter id="pip-soft" x="-40%" y="-40%" width="180%" height="180%">
+      <feGaussianBlur stdDeviation="6" />
+    </filter>
+  </defs>
+
+  <ellipse cx="100" cy="222" rx="46" ry="9" fill="#000" opacity="0.22" filter="url(#pip-soft)" />
+
+  <g data-part="accent" fill="#ffb020">
+    <rect x="96" y="18" width="8" height="34" rx="4" />
+    <circle cx="100" cy="16" r="12" />
+  </g>
+
+  <g data-part="shell" fill="#4f8cff">
+    <rect x="34" y="52" width="132" height="140" rx="46" />
+    <rect x="14" y="96" width="26" height="62" rx="13" />
+    <rect x="160" y="96" width="26" height="62" rx="13" />
+  </g>
+
+  <g data-part="visor" fill="#151a2e">
+    <rect x="52" y="78" width="96" height="60" rx="30" />
+  </g>
+
+  <g data-part="eyes" fill="#7df0ff">
+    <circle cx="80" cy="108" r="11" fill="#7df0ff" />
+    <circle cx="120" cy="108" r="11" fill="#7df0ff" />
+    <circle cx="76" cy="104" r="4" fill="#ffffff" opacity="0.9" />
+    <circle cx="116" cy="104" r="4" fill="#ffffff" opacity="0.9" />
+  </g>
+
+  <g data-part="accent" fill="#ffb020">
+    <rect x="60" y="186" width="34" height="20" rx="10" />
+    <rect x="106" y="186" width="34" height="20" rx="10" />
+  </g>
+
+  <g data-part="trim" fill="#ffffff" opacity="0.16">
+    <rect x="46" y="60" width="42" height="16" rx="8" />
+  </g>
+</svg>

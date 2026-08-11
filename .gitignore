@@ -1,0 +1,23 @@
+# dependencies
+node_modules/
+
+# build output
+dist/
+out/
+build/
+
+# local state — settings.json holds the Gemini API key, never commit it
+settings.json
+*.local.json
+
+# logs
+npm-debug.log*
+yarn-error.log*
+*.log
+
+# editor / OS
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+desktop.ini
