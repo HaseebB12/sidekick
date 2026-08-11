@@ -83,18 +83,21 @@ body {
   -webkit-user-drag: none;
 }
 
-/* Idle bob — the "alive, not a statue" breathing (F2). */
+/* Idle bob — the "alive, not a statue" breathing (F2).
+   A 6px peak over 3.6s works out to ~3px of travel at any given moment, which
+   reads as a frozen statue rather than breathing. Bigger amplitude and a slight
+   squash on the low beat make it legible without becoming distracting. */
 @keyframes bob {
   0%,
   100% {
     transform: translateY(0) rotate(0deg);
   }
   50% {
-    transform: translateY(-6px) rotate(-1.2deg);
+    transform: translateY(-14px) rotate(-2.6deg);
   }
 }
 .character[data-motion='idle'] .figure-art {
-  animation: bob 3.6s ease-in-out infinite;
+  animation: bob 2.9s ease-in-out infinite;
 }
 .character[data-motion='quiet'] .figure-art,
 .character[data-motion='paused'] .figure-art {

@@ -283,6 +283,17 @@
       broadcast('ui:add-character');
       return true;
     },
+    // Desktop-only channels, answered here so a browser never hits the
+    // "unsupported channel" path. There is no OS file dialog and no filesystem
+    // to copy into, so both fall back to the in-page file picker.
+    'characters:pick': () => {
+      broadcast('ui:add-character');
+      return { added: [], skipped: [] };
+    },
+    'characters:import': () => ({
+      added: [],
+      skipped: ['browser build — use the file picker or drag an image onto the window'],
+    }),
     'characters:add': (file) => {
       const list = readUserCharacters();
       const next = list.filter((c) => c.id !== file.id).concat([file]);
