@@ -138,7 +138,15 @@
       if (err.name === 'NotAllowedError') {
         throw new Error('Screen sharing was declined, so there is nothing to look at. Click the character again to retry.');
       }
-      throw err;
+      if (err.name === 'NotSupportedError' || err.name === 'NotFoundError') {
+        throw new Error(
+          'This browser will not allow a screen capture here. That usually means the page is ' +
+            'embedded (an IDE preview pane) rather than a normal tab — open http://localhost:5173 ' +
+            'in Chrome or Edge directly, or use the desktop app, which captures with no prompt.'
+        );
+      }
+      // Never surface a bare DOMException like "Not supported" — it says nothing useful.
+      throw new Error(`Screen capture failed (${err.name || 'unknown'}): ${err.message || 'no detail given'}.`);
     }
 
     const video = document.createElement('video');

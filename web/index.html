@@ -56,9 +56,13 @@
     </div>
 
     <!-- The three Sidekick surfaces, each the same page Electron loads. -->
-    <iframe id="companion" class="surface companion" src="/src/renderer/companion/index.html" title="Sidekick companion"></iframe>
+    <!-- allow="display-capture" is required: getDisplayMedia() inside a nested
+         iframe needs the permission delegated explicitly, even same-origin.
+         Without it Chrome throws NotSupportedError when the character is clicked. -->
+    <iframe id="companion" class="surface companion" src="/src/renderer/companion/index.html" title="Sidekick companion" allow="display-capture"></iframe>
     <div id="chatHolder" class="chat-holder" hidden>
-      <iframe id="chat" class="surface" src="/src/renderer/chat/index.html" title="Sidekick chat"></iframe>
+      <!-- Re-capture lives in the chat panel, so it needs the same delegation. -->
+      <iframe id="chat" class="surface" src="/src/renderer/chat/index.html" title="Sidekick chat" allow="display-capture"></iframe>
     </div>
     <div id="settingsHolder" class="modal" hidden>
       <div class="modal-card">
