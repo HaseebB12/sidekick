@@ -38,6 +38,7 @@ function summon(reason = 'hotkey') {
   c.setAlwaysOnTop(true, 'screen-saver');
   visible = true;
   c.webContents.send('summon', { reason, cursor: cursorPoint() });
+  console.log('[summon]', reason, 'visible:', c.isVisible(), 'bounds:', JSON.stringify(c.getBounds()));
   registerEscape();
 }
 

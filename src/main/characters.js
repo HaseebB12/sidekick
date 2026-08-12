@@ -2,6 +2,7 @@
 
 const fs = require('fs');
 const path = require('path');
+const { pathToFileURL } = require('url');
 const { app, shell } = require('electron');
 
 /**
@@ -59,8 +60,13 @@ function prettify(basename) {
     .replace(/\b\w/g, (c) => c.toUpperCase());
 }
 
+/**
+ * Hand-rolling this encoded the Windows drive letter too ("C:" -> "C%3A"), which
+ * Chromium refuses to load, so every character thumbnail came out broken.
+ * pathToFileURL gets the drive letter, spaces and unicode right.
+ */
 function toFileUrl(p) {
-  return 'file:///' + p.replace(/\\/g, '/').replace(/^\//, '').split('/').map(encodeURIComponent).join('/');
+  return pathToFileURL(p).href;
 }
 
 function readDir(dir, source) {

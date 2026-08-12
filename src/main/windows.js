@@ -47,12 +47,24 @@ function createCompanion() {
     acceptFirstMouse: true,
     show: false,
     webPreferences: {
-      preload: P('companion.js'),
+      preload: P('bridge.js'),
       contextIsolation: true,
       nodeIntegration: false,
       backgroundThrottling: false,
     },
   });
+
+  // Surface overlay-renderer problems in the main log. A transparent click-through
+  // window shows nothing when its script dies, so without this it fails silently.
+  companion.webContents.on('console-message', (e) => {
+    if (e.level === 'error' || e.level === 'warning') console.log('[companion]', e.message);
+  });
+  companion.webContents.on('did-fail-load', (_e, code, desc) =>
+    console.error('[companion] failed to load:', code, desc)
+  );
+  companion.webContents.on('preload-error', (_e, file, err) =>
+    console.error('[companion] preload error:', file, err && err.message)
+  );
 
   companion.setAlwaysOnTop(true, 'screen-saver');
   // Click-through by default; the renderer flips this off while the cursor is
@@ -92,7 +104,7 @@ function createChat() {
     skipTaskbar: true,
     show: false,
     webPreferences: {
-      preload: P('chat.js'),
+      preload: P('bridge.js'),
       contextIsolation: true,
       nodeIntegration: false,
     },
@@ -144,7 +156,7 @@ function createSettings() {
     skipTaskbar: false,
     title: 'Sidekick — Settings',
     webPreferences: {
-      preload: P('settings.js'),
+      preload: P('bridge.js'),
       contextIsolation: true,
       nodeIntegration: false,
     },
